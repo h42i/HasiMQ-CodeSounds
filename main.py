@@ -43,12 +43,14 @@ class CodeSounds:
 
             time.sleep(self._error_wait_time)
             self._connect_to_broker()
-    
+
     def on_connect(self, mosq, obj, rc):
         print('Connected to the broker.')
 
     def on_disconnect(self, mosq, obj, rc):
         print('Disconnected from the broker. Reconnecting now.')
+
+        self._connect_to_broker()
 
     def on_subscribe(self, mosq, obj, mid, qos_list):
         print('Subscribed to the topic.')
@@ -64,7 +66,11 @@ class CodeSounds:
 
     def loop(self):
         try:
-            self._client.loop(10)
+            for i in range(6000):
+                self._client.loop(10)
+
+            self._client.disconnect()
+            self._connect_to_broker()
         except:
              print('Fatal error. Trying to reconnect to the scanner.')
 
