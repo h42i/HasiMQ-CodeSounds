@@ -17,10 +17,9 @@ client.subscribe(topic);
 
 client.on('message', function(topic, message) {
   var filename = 'sounds/' + message + '.wav';
+
   if (fs.existsSync(filename)) {
     	console.log('Playing file ' + message);
     	exec('aplay ' + filename);
   }
 });
-
-heapdump.writeSnapshot()
