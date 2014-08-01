@@ -2,7 +2,7 @@
 var sys = require('sys');
 var fs  = require('fs');
 var net = require('net');
-var mqtt = require('mqtt');var child_process = require('child_process');
+var mqtt = require('mqtt');
 var child_process = require('child_process');
 
 var exec = child_process.exec;
